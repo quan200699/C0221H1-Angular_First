@@ -1,0 +1,29 @@
+<h1>Form Create Product</h1>
+<form>
+  <table>
+    <tr>
+      <td>Id:</td>
+      <td><input type="number" name="id" [(ngModel)]="product.id"></td>
+    </tr>
+    <tr>
+      <td>Name:</td>
+      <td><input type="text" name="name" [(ngModel)]="product.name"></td>
+    </tr>
+    <tr>
+      <td>Price:</td>
+      <td><input type="text" name="price" [(ngModel)]="product.price"></td>
+    </tr>
+    <tr>
+      <td>Description:</td>
+      <td><input type="text" name="description" [(ngModel)]="product.description"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><button>Create</button></td>
+    </tr>
+  </table>
+</form>
+{{product.id}}
+{{product.name}}
+{{product.price}}
+{{product.description}}
