@@ -18,6 +18,9 @@ export class ProductListComponent implements OnInit {
     price: 23000000,
     description: 'Hàng mới'
   }];
+  isShowedFormCreate = false;
+  isShowedFormUpdate = false;
+  productCurrentIndex = -1;
 
   constructor() {
   }
@@ -25,4 +28,16 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
   }
 
+  showProductCreateForm() {
+    this.isShowedFormCreate = !this.isShowedFormCreate;
+  }
+
+  showProductEditForm(index) {
+    this.isShowedFormUpdate = !this.isShowedFormUpdate;
+    if (this.isShowedFormUpdate) {
+      this.productCurrentIndex = index;
+    } else {
+      this.productCurrentIndex = -1;
+    }
+  }
 }

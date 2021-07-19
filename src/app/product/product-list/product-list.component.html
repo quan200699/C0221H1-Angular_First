@@ -1,16 +1,22 @@
 <h1>Đây là Product List Component</h1>
+ <button (click)="showProductCreateForm()">Create product</button>
 <table>
   <tr>
     <th>#</th>
     <th>Name</th>
     <th>Price</th>
     <th>Description</th>
+    <th>Edit</th>
+    <th>Delete</th>
   </tr>
   <tr *ngFor="let product of products; index as i">
     <td>{{i + 1}}</td>
     <td>{{product.name}}</td>
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
+    <td><button (click)="showProductEditForm(i)">Edit</button></td>
+    <td><button>Delete</button></td>
   </tr>
 </table>
-<app-product-create></app-product-create>
+<app-product-create *ngIf="isShowedFormCreate"></app-product-create>
+<app-product-edit *ngIf="isShowedFormUpdate" [product]="products[productCurrentIndex]"></app-product-edit>
