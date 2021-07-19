@@ -40,4 +40,8 @@ export class ProductListComponent implements OnInit {
       this.productCurrentIndex = -1;
     }
   }
+
+  addToList(value) {
+    this.products.push(value);
+  }
 }

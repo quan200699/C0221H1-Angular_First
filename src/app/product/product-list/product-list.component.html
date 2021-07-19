@@ -18,5 +18,5 @@
     <td><button>Delete</button></td>
   </tr>
 </table>
-<app-product-create *ngIf="isShowedFormCreate"></app-product-create>
+<app-product-create *ngIf="isShowedFormCreate" (addEvent)="addToList($event)"></app-product-create>
 <app-product-edit *ngIf="isShowedFormUpdate" [product]="products[productCurrentIndex]"></app-product-edit>
