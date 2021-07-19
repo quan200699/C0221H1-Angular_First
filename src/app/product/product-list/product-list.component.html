@@ -1,4 +1,5 @@
 <h1>Đây là Product List Component</h1>
+<a routerLink="/create">Product Create</a>
  <button (click)="showProductCreateForm()">Create product</button>
 <table>
   <tr>
@@ -18,5 +19,3 @@
     <td><button>Delete</button></td>
   </tr>
 </table>
-<app-product-create *ngIf="isShowedFormCreate" (addEvent)="addToList($event)"></app-product-create>
-<app-product-edit *ngIf="isShowedFormUpdate" [product]="products[productCurrentIndex]"></app-product-edit>

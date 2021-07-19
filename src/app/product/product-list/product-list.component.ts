@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
+import {ProductService} from '../../product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -7,25 +8,22 @@ import {Product} from '../../model/product';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  products: Product[] = [{
-    id: 1,
-    name: 'IPhone 12 Pro Max',
-    price: 28800000,
-    description: 'Hàng tồn kho'
-  }, {
-    id: 2,
-    name: 'IPhone 12',
-    price: 23000000,
-    description: 'Hàng mới'
-  }];
+  products: Product[] = [];
   isShowedFormCreate = false;
   isShowedFormUpdate = false;
   productCurrentIndex = -1;
 
-  constructor() {
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
+    this.getAllProduct();
+  }
+
+  getAllProduct() {
+    this.productService.getAll().subscribe(products => {
+      this.products = products;
+    });
   }
 
   showProductCreateForm() {
