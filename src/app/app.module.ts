@@ -8,13 +8,15 @@ import { ProductCreateComponent } from './product/product-create/product-create.
 import {FormsModule} from '@angular/forms';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import {HttpClientModule} from '@angular/common/http';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductListComponent,
     ProductCreateComponent,
-    ProductEditComponent
+    ProductEditComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

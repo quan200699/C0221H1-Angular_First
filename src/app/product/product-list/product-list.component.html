@@ -1,6 +1,5 @@
 <h1>Đây là Product List Component</h1>
 <a routerLink="/create">Product Create</a>
- <button (click)="showProductCreateForm()">Create product</button>
 <table>
   <tr>
     <th>#</th>
@@ -12,10 +11,13 @@
   </tr>
   <tr *ngFor="let product of products; index as i">
     <td>{{i + 1}}</td>
-    <td>{{product.name}}</td>
+    <td>
+<!--      <a [routerLink]="['/products',product.id]">{{product.name}}</a>-->
+      <a routerLink="/products/{{product.id}}">{{product.name}}</a>
+    </td>
     <td>{{product.price}}</td>
     <td>{{product.description}}</td>
-    <td><button (click)="showProductEditForm(i)">Edit</button></td>
-    <td><button>Delete</button></td>
+    <td><a routerLink="/products/edit/{{product.id}}">Edit</a></td>
+    <td><a>Delete</a></td>
   </tr>
 </table>

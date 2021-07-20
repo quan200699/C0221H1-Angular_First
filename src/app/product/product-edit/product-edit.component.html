@@ -1,10 +1,6 @@
 <h1>Form Edit Product</h1>
-<form>
+<form (ngSubmit)="updateProduct(product.id)">
   <table>
-    <tr>
-      <td>Id:</td>
-      <td><input type="number" name="id" [(ngModel)]="product.id"></td>
-    </tr>
     <tr>
       <td>Name:</td>
       <td><input type="text" name="name" [(ngModel)]="product.name"></td>
@@ -19,7 +15,7 @@
     </tr>
     <tr>
       <td></td>
-      <td><button>Create</button></td>
+      <td><button>Edit</button></td>
     </tr>
   </table>
 </form>

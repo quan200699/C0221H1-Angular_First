@@ -1,14 +1,14 @@
 import {Component, OnInit} from '@angular/core';
-import {Product} from '../../model/product';
 import {ProductService} from '../../product.service';
+import {Product} from '../../model/product';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
-  selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css']
+  selector: 'app-product-detail',
+  templateUrl: './product-detail.component.html',
+  styleUrls: ['./product-detail.component.css']
 })
-export class ProductEditComponent implements OnInit {
+export class ProductDetailComponent implements OnInit {
   product: Product = {};
 
   constructor(private productService: ProductService,
@@ -16,17 +16,13 @@ export class ProductEditComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       const id = paramMap.get('id');
       this.getProductById(id);
-    });
+    })
   }
 
   ngOnInit() {
   }
 
   getProductById(id) {
-    return this.productService.getById(id).subscribe(product => this.product = product);
-  }
-
-  updateProduct(id) {
-    this.productService.update(id, this.product).subscribe(() => alert("Thành công"));
+    this.productService.getById(id).subscribe(product => this.product = product);
   }
 }

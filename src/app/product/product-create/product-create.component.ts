@@ -1,5 +1,6 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
+import {ProductService} from '../../product.service';
 
 @Component({
   selector: 'app-product-create',
@@ -7,12 +8,9 @@ import {Product} from '../../model/product';
   styleUrls: ['./product-create.component.css']
 })
 export class ProductCreateComponent implements OnInit {
-  @Output()
-  addEvent = new EventEmitter<Product>();
-
   product: Product = {};
 
-  constructor() {
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
@@ -20,6 +18,8 @@ export class ProductCreateComponent implements OnInit {
 
 
   createProduct() {
-    this.addEvent.emit(this.product);
+    this.productService.save(this.product).subscribe(() => {
+      alert('Thành công');
+    }, () => alert('Lỗi!')); //đã gọi API
   }
 }

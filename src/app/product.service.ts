@@ -17,4 +17,16 @@ export class ProductService {
   getAll(): Observable<Product[]> {
     return this.http.get<Product[]>(API_URL + '/products'); //http://localhost:8080/products
   }
+
+  getById(id: number): Observable<Product> {
+    return this.http.get<Product>(`${API_URL}/products/${id}`);
+  }
+
+  save(product: Product): Observable<Product> {
+    return this.http.post<Product>(`${API_URL}/products`, product);
+  }
+
+  update(id: number, product: Product): Observable<Product>{
+    return this.http.put<Product>(`${API_URL}/products/${id}`, product);
+  }
 }

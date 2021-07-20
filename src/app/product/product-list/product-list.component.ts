@@ -9,15 +9,13 @@ import {ProductService} from '../../product.service';
 })
 export class ProductListComponent implements OnInit {
   products: Product[] = [];
-  isShowedFormCreate = false;
-  isShowedFormUpdate = false;
-  productCurrentIndex = -1;
 
   constructor(private productService: ProductService) {
   }
 
-  ngOnInit() {
-    this.getAllProduct();
+  async ngOnInit() {
+    // this.getAllProduct();
+    this.products = await this.getAllProductUsingPromise();
   }
 
   getAllProduct() {
@@ -26,20 +24,7 @@ export class ProductListComponent implements OnInit {
     });
   }
 
-  showProductCreateForm() {
-    this.isShowedFormCreate = !this.isShowedFormCreate;
-  }
-
-  showProductEditForm(index) {
-    this.isShowedFormUpdate = !this.isShowedFormUpdate;
-    if (this.isShowedFormUpdate) {
-      this.productCurrentIndex = index;
-    } else {
-      this.productCurrentIndex = -1;
-    }
-  }
-
-  addToList(value) {
-    this.products.push(value);
+  getAllProductUsingPromise() {
+    return this.productService.getAll().toPromise();
   }
 }
