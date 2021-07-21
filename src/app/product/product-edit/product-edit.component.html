@@ -1,17 +1,21 @@
 <h1>Form Edit Product</h1>
-<form (ngSubmit)="updateProduct(product.id)">
+<form [formGroup]="productForm" (ngSubmit)="updateProduct(product.id)">
   <table>
     <tr>
       <td>Name:</td>
-      <td><input type="text" name="name" [(ngModel)]="product.name"></td>
+      <td><input type="text" formControlName="name"></td>
+      <td *ngIf="name.touched && name.dirty">
+<!--        <p *ngIf="name.errors?.required">Trường này phải điền</p>-->
+        <p *ngIf="name.errors?.minlength">ít nhất 6 ký tự</p>
+      </td>
     </tr>
     <tr>
       <td>Price:</td>
-      <td><input type="text" name="price" [(ngModel)]="product.price"></td>
+      <td><input type="text" formControlName="price"></td>
     </tr>
     <tr>
       <td>Description:</td>
-      <td><input type="text" name="description" [(ngModel)]="product.description"></td>
+      <td><input type="text" formControlName="description"></td>
     </tr>
     <tr>
       <td></td>

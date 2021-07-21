@@ -8,7 +8,9 @@ import {ProductService} from '../../product.service';
   styleUrls: ['./product-create.component.css']
 })
 export class ProductCreateComponent implements OnInit {
-  product: Product = {};
+  product: Product = {
+  };
+  isSubmitted = false;
 
   constructor(private productService: ProductService) {
   }
@@ -17,9 +19,14 @@ export class ProductCreateComponent implements OnInit {
   }
 
 
-  createProduct() {
-    this.productService.save(this.product).subscribe(() => {
-      alert('Thành công');
-    }, () => alert('Lỗi!')); //đã gọi API
+  createProduct(productForm) {
+    this.isSubmitted = true;
+    if(productForm.valid){
+      this.productService.save(productForm.value).subscribe(() => {
+        alert('Thành công');
+      }, () => alert('Lỗi!')); //đã gọi API
+    }else {
+      alert("Dữ liệu nhập vào không hợp lệ")
+    }
   }
 }

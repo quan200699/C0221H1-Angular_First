@@ -1,9 +1,13 @@
 <h1>Form Create Product</h1>
-<form (ngSubmit)="createProduct()">
+<form #productForm="ngForm" (ngSubmit)="createProduct(productForm)">
   <table>
     <tr>
       <td>Name:</td>
-      <td><input type="text" name="name" [(ngModel)]="product.name"></td>
+      <td><input type="text" #name="ngModel" name="name" required minlength="6" [(ngModel)]="product.name"></td>
+      <td *ngIf="productForm.invalid && productForm.touched && isSubmitted">
+        <p *ngIf="name.errors?.required">Trường này phải điền</p>
+        <p *ngIf="name.errors?.minlength">Phải ít nhất 6 ký tự</p>
+      </td>
     </tr>
     <tr>
       <td>Price:</td>
