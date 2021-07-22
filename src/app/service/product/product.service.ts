@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Product} from './model/product';
-import {environment} from '../environments/environment';
+import {Product} from '../../model/product';
+import {environment} from '../../../environments/environment';
 
 const API_URL = `${environment.apiUrl}`;
 
@@ -23,6 +23,9 @@ export class ProductService {
   }
 
   save(product: Product): Observable<Product> {
+    product.category = {
+      id: product.category
+    }
     return this.http.post<Product>(`${API_URL}/products`, product);
   }
 

@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from '../../model/product';
-import {ProductService} from '../../product.service';
+import {ProductService} from '../../service/product/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CategoryService} from '../../service/category/category.service';
+import {Category} from '../../model/category';
 
 @Component({
   selector: 'app-product-edit',
@@ -14,11 +16,14 @@ export class ProductEditComponent implements OnInit {
   productForm: FormGroup = new FormGroup({
     name: new FormControl(),
     price: new FormControl(),
+    category: new FormControl(),
     description: new FormControl()
   });
+  categories: Category[] = [];
 
   constructor(private productService: ProductService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private categoryService: CategoryService) {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       const id = paramMap.get('id');
       this.getProductById(id);
@@ -29,9 +34,14 @@ export class ProductEditComponent implements OnInit {
     return this.productForm.get('name');
   }
 
+
   ngOnInit() {
+    this.getAllCategories();
   }
 
+  getAllCategories() {
+    this.categoryService.getAll().subscribe(categories => this.categories = categories);
+  }
   getProductById(id) {
     return this.productService.getById(id).subscribe(product => {
       this.product = product;

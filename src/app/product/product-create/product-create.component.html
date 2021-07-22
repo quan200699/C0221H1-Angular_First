@@ -14,6 +14,14 @@
       <td><input type="text" name="price" [(ngModel)]="product.price"></td>
     </tr>
     <tr>
+      <td>Categories:</td>
+      <td>
+        <select name="category" [(ngModel)]="product.category">
+          <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
       <td>Description:</td>
       <td><input type="text" name="description" [(ngModel)]="product.description"></td>
     </tr>
