@@ -3,6 +3,10 @@ import {Product} from '../../model/product';
 import {ProductService} from '../../service/product/product.service';
 import {CategoryService} from '../../service/category/category.service';
 import {Category} from '../../model/category';
+import {NotificationService} from '../../service/notification/notification.service';
+
+declare var $: any;
+declare var Swal: any;
 
 @Component({
   selector: 'app-product-create',
@@ -15,6 +19,7 @@ export class ProductCreateComponent implements OnInit {
   isSubmitted = false;
 
   constructor(private productService: ProductService,
+              private notificatuonService: NotificationService,
               private categoryService: CategoryService) {
   }
 
@@ -30,10 +35,10 @@ export class ProductCreateComponent implements OnInit {
     this.isSubmitted = true;
     if (productForm.valid) {
       this.productService.save(productForm.value).subscribe(() => {
-        alert('Thành công');
-      }, () => alert('Lỗi!')); //đã gọi API
+        this.notificatuonService.showSuccessMessage("thành công!");
+      }, () => this.notificatuonService.showErrorMessage("Lỗi")); //đã gọi API
     } else {
-      alert('Dữ liệu nhập vào không hợp lệ');
+      this.notificatuonService.showErrorMessage('Dữ liệu nhập vào không hợp lệ');
     }
   }
 }

@@ -17,6 +17,7 @@
       <td>Categories:</td>
       <td>
         <select name="category" [(ngModel)]="product.category">
+          <option [value]="undefined">Select category</option>
           <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
         </select>
       </td>
