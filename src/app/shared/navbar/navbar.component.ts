@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../../service/authentication/authentication.service';
+import {UserToken} from '../../model/user-token';
 
 @Component({
   selector: 'app-navbar',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
+  currentUser: UserToken = {};
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) {
+    this.authenticationService.currentUserSubject.subscribe(user => {
+      this.currentUser = user;
+    });
+  }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.authenticationService.logout();
+  }
 }
